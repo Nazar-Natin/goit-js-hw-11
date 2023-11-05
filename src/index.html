@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
     <link rel="stylesheet" href="./sass/index.scss" />
+    <link rel="stylesheet" href="styles.css" />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <form class="search-form" id="search-form">
+      <div class="search-header">
+        <input
+          class="img-input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button class="img-btn" type="submit">
+          <img
+            src="./images/icons8-search.svg"
+            alt="search"
+            width="20"
+            height="20"
+          />
+        </button>
+      </div>
+      <div class="gallery">
+        <!-- ##Image cards## -->
+      </div>
+      <button class="invisible" type="button" js-load>Load more</button>
+    </form>
   </body>
 </html>
