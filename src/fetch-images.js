@@ -5,7 +5,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 
 const params = new URLSearchParams({
   q: undefined,
-  key: '38966446-c32fc19d0a971996be7b08c24',
+  key: '40491977-4d771312700760bcb76f7c497',
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: true,
