@@ -3,6 +3,7 @@ import { getImages, getImagesNext } from './fetch-images';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
+
 // ## Initialization ##
 let form = document.querySelector('.search-form');
 let gallery = document.querySelector('.gallery');
@@ -39,12 +40,18 @@ function setMarkup(images) {
     Notiflix.Notify.failure('Not found');
     return;
   }
-  Notiflix.Notify.success('Found: ' + totalHits + ' images!');
-  btnLoad.classList.remove('invisible');
-  btnLoad.classList.add('load-btn');
+
   if (totalHits <= 40) {
+    Notiflix.Notify.info(
+      "We're sorry, but you've reached the end of search results."
+    );
     btnLoad.classList.add('invisible');
+  } else {
+    Notiflix.Notify.success('Found: ' + totalHits + ' images!');
+    btnLoad.classList.remove('invisible');
+    btnLoad.classList.add('load-btn');
   }
+
   gallery.innerHTML = hits
     .map(image => {
       return setImage(image);
@@ -60,19 +67,22 @@ function setMarkupNext(images) {
     Notiflix.Notify.failure('Not found');
     return;
   }
+
   btnLoad.classList.remove('invisible');
   page += 1;
+
   if (totalHits <= 40 * page) {
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
     btnLoad.classList.add('invisible');
+  } else {
+    gallery.innerHTML += hits
+      .map(image => {
+        return setImage(image);
+      })
+      .join('');
   }
-  gallery.innerHTML += hits
-    .map(image => {
-      return setImage(image);
-    })
-    .join('');
 }
 
 function setImage(image) {
